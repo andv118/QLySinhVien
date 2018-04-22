@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionLop"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="85dp"
+        android:layout_marginRight="20dp"
+        app:backgroundTint="#1ebb59"
+        android:src="@drawable/ic_chat_white_48dp"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionExit"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="20dp"
+        app:backgroundTint="#1ebb59"
+        android:src="@drawable/cancel"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionSinhVien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="150dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_person_white_48dp"
+        android:visibility="invisible"
+        app:backgroundTint="#1ebb59" />
+
+</FrameLayout>
