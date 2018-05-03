@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ListView
+        android:id="@+id/listviewFragmentLop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#fca800"
-        android:gravity="center"
-        android:text="Fragment 1"/>
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </LinearLayout>

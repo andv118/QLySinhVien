@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtLvSTT"
+        android:layout_width="60dp"
+        android:layout_height="110dp"
+        android:layout_alignBottom="@+id/txtLvPhongHoc"
+        android:layout_marginRight="5dp"
+        android:background="#33691E"
+        android:gravity="center_vertical|center"
+        android:text="10"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/txtLvTenMonHoc"
+        android:layout_toRightOf="@+id/txtLvSTT"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:gravity="center_vertical"
+        android:padding="2dp"
+        android:text="MH: Thong tin vo tuyen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtLvThoiGian"
+        android:layout_below="@+id/txtLvTenMonHoc"
+        android:layout_toRightOf="@+id/txtLvSTT"
+        android:textColor="#00796B"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:padding="2dp"
+        android:text="TG: 9h-thu2"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtLvPhongHoc"
+        android:layout_below="@+id/txtLvThoiGian"
+        android:layout_toRightOf="@+id/txtLvSTT"
+        android:textSize="15sp"
+        android:text="PH : 303A3"
+        android:textColor="#0277BD"
+        android:padding="2dp"
+        android:gravity="center_vertical"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/imgLvXoa"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/txtLvTenMonHoc"
+        android:layout_marginEnd="22dp"
+        android:layout_toStartOf="@+id/imgLvSua"
+        android:src="@drawable/ic_clear_black_24dp" />
+
+    <ImageView
+        android:id="@+id/imgLvSua"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/txtLvTenMonHoc"
+        android:layout_marginEnd="13dp"
+        android:src="@drawable/ic_create_black_24dp" />
+
+</RelativeLayout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.vanando.quanlysinhvien.activity.ThemLopHocActivity">
+
+    <TextView
+        android:background="#BF360C"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:text="Nhập Thông Tin Lớp Học"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    // lop
+    <TextView
+        android:layout_marginTop="5dp"
+        android:padding="2dp"
+        android:textColor="#01579B"
+        android:textSize="20sp"
+        android:text="Tên lớp học: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edtTenLopHoc"
+        android:gravity="center_vertical"
+        android:textSize="25sp"
+        android:hint="Lớp học"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    // thoi gian
+    <TextView
+        android:layout_marginTop="15dp"
+        android:padding="2dp"
+        android:textColor="#01579B"
+        android:textSize="20sp"
+        android:text="Thời gian học : "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnThoiGian"
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="Thời gian"
+            android:layout_marginLeft="20dp"
+            android:layout_width="150dp"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/btnThu"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="Thứ trong tuần"
+            android:layout_marginRight="20dp"
+            android:layout_width="150dp"
+            android:layout_height="50dp" />
+
+        <EditText
+            android:id="@+id/edtThoiGian"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/btnThoiGian"
+            android:layout_below="@+id/btnThoiGian"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:enabled="false"
+            android:hint="Thời gian"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/edtThu"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/btnThu"
+            android:layout_below="@+id/btnThu"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:enabled="false"
+            android:hint="Thứ "
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+    // phong
+    <TextView
+        android:layout_marginTop="5dp"
+        android:padding="2dp"
+        android:textColor="#01579B"
+        android:textSize="20sp"
+        android:text="Phòng học : "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edtPhongHoc"
+        android:gravity="center_vertical"
+        android:textSize="25sp"
+        android:hint="Phòng học"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnHuy"
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="Hủy"
+            android:layout_marginLeft="50dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/btnThem"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="Thêm"
+            android:layout_marginRight="50dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

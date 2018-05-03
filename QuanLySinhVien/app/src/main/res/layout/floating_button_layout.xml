@@ -4,36 +4,80 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionLop"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="85dp"
-        android:layout_marginRight="20dp"
-        app:backgroundTint="#1ebb59"
-        android:src="@drawable/ic_chat_white_48dp"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionExit"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="20dp"
-        app:backgroundTint="#1ebb59"
-        android:src="@drawable/cancel"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/fabMenu"
+            app:menu_showShadow="true"
+            app:menu_fab_label=""
+            app:menu_openDirection="up"
+            app:menu_fab_size="normal"
+            android:backgroundTintMode="screen"
+            android:backgroundTint="#1ebb59"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            app:menu_labels_textColor="#424242"
+            app:menu_labels_colorNormal="#FFFFFF"
+            app:menu_labels_colorPressed="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionSinhVien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="150dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/ic_person_white_48dp"
-        android:visibility="invisible"
-        app:backgroundTint="#1ebb59" />
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fabThemLopHoc"
+                app:fab_size="mini"
+                app:fab_label="Thêm lớp học"
+                android:src="@drawable/ic_group_white_24dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fabThemSinhVien"
+                app:fab_size="mini"
+                app:fab_label="Thêm Sinh Viên"
+                android:src="@drawable/ic_person_outline_white_24dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.github.clans.fab.FloatingActionMenu>
+
+    </RelativeLayout>
+
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/floatingActionLop"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="85dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--app:backgroundTint="#1ebb59"-->
+        <!--android:src="@drawable/ic_chat_white_48dp"-->
+        <!--android:visibility="visible"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/floatingActionExit"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_margin="20dp"-->
+        <!--app:backgroundTint="#1ebb59"-->
+        <!--android:src="@drawable/cancel"-->
+        <!--android:visibility="visible"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/floatingActionSinhVien"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="150dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:src="@drawable/ic_person_white_48dp"-->
+        <!--android:visibility="visible"-->
+        <!--app:backgroundTint="#1ebb59" />-->
 
 </FrameLayout>

@@ -1,6 +1,7 @@
 package com.vanando.quanlysinhvien;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.clans.fab.FloatingActionMenu;
+import com.vanando.quanlysinhvien.activity.ThemLopHocActivity;
+
 public class MainActivity extends AppCompatActivity
             implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -28,10 +32,8 @@ public class MainActivity extends AppCompatActivity
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
     // floattingButton
-    private FloatingActionButton fab;
-    private FloatingActionButton fab_lop;
-    private FloatingActionButton fab_sinhVien;
-    private FloatingActionButton fab_cancel;
+    private FloatingActionMenu fabMenu;
+    private com.github.clans.fab.FloatingActionButton fabLopHoc, fabSinhVien;
     // navigation
     private DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -78,52 +80,21 @@ public class MainActivity extends AppCompatActivity
     // floattingButton
     private void floatingButtonAction() {
 
-        fab_lop.setOnClickListener(new View.OnClickListener() {
+        fabLopHoc.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Lop", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ThemLopHocActivity.class);
+                startActivity(intent);
             }
         });
 
-        fab_sinhVien.setOnClickListener(new View.OnClickListener() {
+        fabSinhVien.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Sinh Vien", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "them sinh vien", Toast.LENGTH_SHORT).show();
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                fab_lop.show();
-                fab_sinhVien.show();
-                fab_cancel.show();
-                fab.hide();
-            }
-        });
-
-        fab_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fab_lop.hide();
-                fab_sinhVien.hide();
-                fab_cancel.hide();
-                fab.show();
-            }
-        });
-
-    }
-    // anh xa
-    private void initView() {
-        tablayout = (TabLayout) findViewById(R.id.tablayout);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        fab = (FloatingActionButton) findViewById(R.id.floatingAction);
-        fab_lop = (FloatingActionButton) findViewById(R.id.floatingActionLop);
-        fab_sinhVien = (FloatingActionButton) findViewById(R.id.floatingActionSinhVien);
-        fab_cancel = (FloatingActionButton) findViewById(R.id.floatingActionExit);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        navigationView = (NavigationView) findViewById(R.id.navigationView);
     }
     // toolbar
     private void initToolbar() {
@@ -185,4 +156,17 @@ public class MainActivity extends AppCompatActivity
 
         return false;
     }
+    // anh xa
+    private void initView() {
+        tablayout = (TabLayout) findViewById(R.id.tablayout);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        // fab
+        fabMenu = (FloatingActionMenu) findViewById(R.id.fabMenu);
+        fabLopHoc = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fabThemLopHoc);
+        fabSinhVien = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fabThemSinhVien);
+        //navigation
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        navigationView = (NavigationView) findViewById(R.id.navigationView);
+    }
+
 }
