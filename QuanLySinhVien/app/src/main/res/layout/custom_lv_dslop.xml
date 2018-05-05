@@ -36,7 +36,7 @@
         android:textSize="15sp"
         android:padding="2dp"
         android:text="TG: 9h-thu2"
-        android:layout_width="130dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content" />
 
     <TextView

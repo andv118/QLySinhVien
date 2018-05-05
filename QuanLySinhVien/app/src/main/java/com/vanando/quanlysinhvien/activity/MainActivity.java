@@ -1,9 +1,7 @@
-package com.vanando.quanlysinhvien;
+package com.vanando.quanlysinhvien.activity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -20,25 +18,35 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionMenu;
-import com.vanando.quanlysinhvien.activity.ThemLopHocActivity;
+import com.vanando.quanlysinhvien.R;
+import com.vanando.quanlysinhvien.ViewPagerAdapter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
             implements NavigationView.OnNavigationItemSelectedListener{
 
+    public static String ipConfig = "192.168.0.100";
 
     // tablayout va viewPgaer
     private TabLayout tablayout;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
     // floattingButton
-    private FloatingActionMenu fabMenu;
     private com.github.clans.fab.FloatingActionButton fabLopHoc, fabSinhVien;
     // navigation
     private DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,7 +169,6 @@ public class MainActivity extends AppCompatActivity
         tablayout = (TabLayout) findViewById(R.id.tablayout);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         // fab
-        fabMenu = (FloatingActionMenu) findViewById(R.id.fabMenu);
         fabLopHoc = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fabThemLopHoc);
         fabSinhVien = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fabThemSinhVien);
         //navigation

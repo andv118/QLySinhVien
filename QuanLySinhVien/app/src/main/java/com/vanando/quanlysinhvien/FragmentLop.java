@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.vanando.quanlysinhvien.activity.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,9 +31,7 @@ import java.util.ArrayList;
 
 public class FragmentLop extends Fragment {
 
-    public static String ipConfig = "192.168.200.10";
-
-    private String urlGetDatabase = "http://" + ipConfig +"/webserviceQLSV/database.php";
+    private String urlGetDatabase = "http://" + MainActivity.ipConfig +"/webserviceQLSV/database.php";
 
     private View view;
     private ListView lvDanhSachLop;
@@ -84,12 +83,13 @@ public class FragmentLop extends Fragment {
                         for (int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject jsonObject = response.getJSONObject(i);
+                                int idLop = jsonObject.getInt("ID");
                                 String tenLop = jsonObject.getString("TenLop");
                                 String thoiGian = jsonObject.getString("THoiGian");
                                 String thu = jsonObject.getString("Thu");
                                 String phongHoc = jsonObject.getString("PhongHoc");
 
-                                arrLopHoc.add(new LopHoc(tenLop,thoiGian,thu,phongHoc));
+                                arrLopHoc.add(new LopHoc(idLop,tenLop,thoiGian,thu,phongHoc));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

@@ -1,11 +1,14 @@
 package com.vanando.quanlysinhvien;
 
+import java.io.Serializable;
+
 /**
  * Created by Admin on 5/3/2018.
  */
 
-public class LopHoc {
+public class LopHoc implements Serializable{
 
+    private int id;
     private String tenLopHoc;
     private String thoiGian;
     private String thuHoc;
@@ -14,11 +17,20 @@ public class LopHoc {
     public LopHoc() {
     }
 
-    public LopHoc(String tenLopHoc, String thoiGian, String thuHoc, String phongHoc) {
+    public LopHoc(int id, String tenLopHoc, String thoiGian, String thuHoc, String phongHoc) {
+        this.id = id;
         this.tenLopHoc = tenLopHoc;
         this.thoiGian = thoiGian;
         this.thuHoc = thuHoc;
         this.phongHoc = phongHoc;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTenLopHoc() {
@@ -52,4 +64,5 @@ public class LopHoc {
     public void setPhongHoc(String phongHoc) {
         this.phongHoc = phongHoc;
     }
+
 }

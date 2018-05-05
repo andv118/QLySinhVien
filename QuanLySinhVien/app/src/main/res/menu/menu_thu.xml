@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Thứ 2" android:id="@+id/itemThu2"></item>
+
+    <item android:title="Thứ 3" android:id="@+id/itemThu3"></item>
+
+    <item android:title="Thứ 4" android:id="@+id/itemThu4"></item>
+
+    <item android:title="Thứ 5" android:id="@+id/itemThu5"></item>
+
+    <item android:title="Thứ 6" android:id="@+id/itemThu6"></item>
+
+    <item android:title="Thứ 7" android:id="@+id/itemThu7"></item>
+
+    <item android:title="Chủ Nhật" android:id="@+id/itemCN"></item>
+
+</menu>
