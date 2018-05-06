@@ -1,11 +1,8 @@
 package com.vanando.quanlysinhvien.activity;
 
 import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,23 +11,13 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.vanando.quanlysinhvien.database.DatabaseManager;
 import com.vanando.quanlysinhvien.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ThemLopHocActivity extends AppCompatActivity {
-
-    private String urlInsert = "http://"+ MainActivity.ipConfig +"/webserviceQLSV/insert.php";
 
     private EditText edtTenLopHoc, edtPhongHoc, edtThoiGian, edtThu;
     private Button btnThoiGian, btnThu, btnHuy, btnThem;
@@ -49,44 +36,6 @@ public class ThemLopHocActivity extends AppCompatActivity {
         registerForContextMenu(btnThu);
     }
 
-    private void themLopHoc_Volley(String url) {
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (response.toString().trim().equals("success")) {
-                            Toast.makeText(ThemLopHocActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(ThemLopHocActivity.this, MainActivity.class));
-                        } else {
-                            Toast.makeText(ThemLopHocActivity.this, "Lỗi thêm", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ThemLopHocActivity.this, error.toString() + "", Toast.LENGTH_SHORT).show();
-                        Log.d("volleyError", "loi insert: \n" + error.toString());
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                // Map dinh dang cho kieu tra ve
-                Map<String, String> params = new HashMap<>();
-                // put len param
-                params.put("tenLop_Insert",edtTenLopHoc.getText().toString().trim());
-                params.put("thoiGian_Insert",edtThoiGian.getText().toString().trim());
-                params.put("thu_Insert",edtThu.getText().toString().trim());
-                params.put("phongHoc_Insert",edtPhongHoc.getText().toString().trim());
-                return params;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(ThemLopHocActivity.this);
-        requestQueue.add(stringRequest);
-    }
-
     private void setClickButton() {
         // thời gian
         btnThoiGian.setOnClickListener(new View.OnClickListener() {
@@ -96,13 +45,6 @@ public class ThemLopHocActivity extends AppCompatActivity {
                timePickerDialog();
             }
         });
-//        // thứ
-//        btnThu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
 
         // hủy
         btnHuy.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +67,9 @@ public class ThemLopHocActivity extends AppCompatActivity {
                     Toast.makeText(ThemLopHocActivity.this, "Vui lòng nhập đủ thông tin",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    themLopHoc_Volley(urlInsert);
+                    DatabaseManager databaseManager = new DatabaseManager(ThemLopHocActivity.this);
+                    databaseManager.raedJSON_INSERT(edtTenLopHoc, edtThoiGian, edtThu, edtPhongHoc);
+
                 }
             }
         });

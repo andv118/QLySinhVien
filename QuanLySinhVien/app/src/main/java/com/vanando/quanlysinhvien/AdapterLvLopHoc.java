@@ -3,31 +3,18 @@ package com.vanando.quanlysinhvien;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.vanando.quanlysinhvien.activity.MainActivity;
 import com.vanando.quanlysinhvien.activity.SuaLopHocActivity;
+import com.vanando.quanlysinhvien.database.DatabaseManager;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Admin on 5/3/2018.
@@ -35,11 +22,11 @@ import java.util.Map;
 
 public class AdapterLvLopHoc extends BaseAdapter {
 
-    private String urlDelete = "http://" + MainActivity.ipConfig + "/webserviceQLSV/delete.php";
-
     private Context context;
     private int layout_Lh;
     private List<LopHoc> listLH;
+
+    private int id;
 
 //    private String name; // gán tên cho lớp học trong dialog xóa
 //    private int idDelete; // gán id cho lớp de lay ra truyen vao method
@@ -136,43 +123,13 @@ public class AdapterLvLopHoc extends BaseAdapter {
         alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                deleteLopHoc_volley(urlDelete,i);
+                id = listLH.get(i).getId();
+                DatabaseManager databaseManager = new DatabaseManager(context);
+                databaseManager.readJSON_DELETE(id);
+
             }
         });
         alertDialog.show();
-    }
-
-    private void deleteLopHoc_volley(String url, final int i) {
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (response.toString().trim().equals("success")){
-                            Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(context, "Lỗi delete", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("volleyError","delete: \n" +error.toString());
-                        Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> paramsDelete = new HashMap<>();
-                paramsDelete.put("id_delete", String.valueOf(listLH.get(i).getId()));
-                return paramsDelete;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(stringRequest);
-
     }
 
 }
