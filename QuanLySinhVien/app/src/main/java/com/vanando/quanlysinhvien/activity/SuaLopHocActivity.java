@@ -4,6 +4,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,19 +13,30 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.vanando.quanlysinhvien.database.DatabaseManager;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.vanando.quanlysinhvien.LopHoc;
 import com.vanando.quanlysinhvien.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SuaLopHocActivity extends AppCompatActivity {
+
+    private String urlUpdate = "http://" + MainActivity.ipConfig + "/webserviceQLSV/update.php";
 
     private EditText edtTenLopHocSua, edtPhongHocSua, edtThoiGianSua, edtThuSua;
     private Button btnThoiGianSua, btnThuSua, btnHuySua, btnThemSua;
 
-    private int id;
+    private LopHoc lopHoc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +45,19 @@ public class SuaLopHocActivity extends AppCompatActivity {
         // anh xa
         initView();
 
+        // click button
+        setClickButton();
+
         // dang ky cho conntext menu
         registerForContextMenu(btnThuSua);
         // nhan doi tuong lop hoc
         Intent intent = getIntent();
-        LopHoc lopHoc = (LopHoc) intent.getSerializableExtra("guiLopHoc");
-
-        id = lopHoc.getId();
+        lopHoc = (LopHoc) intent.getSerializableExtra("guiLopHoc");
 
         edtTenLopHocSua.setText(lopHoc.getTenLopHoc());
         edtPhongHocSua.setText(lopHoc.getPhongHoc());
         edtThoiGianSua.setText(lopHoc.getThoiGian());
         edtThuSua.setText(lopHoc.getThuHoc());
-
-        // click button
-        setClickButton();
 
     }
 
@@ -81,11 +91,51 @@ public class SuaLopHocActivity extends AppCompatActivity {
                 if (lopHoc.isEmpty() || thoiGian.isEmpty() || thu.isEmpty() || phongHoc.isEmpty()) {
                     Toast.makeText(SuaLopHocActivity.this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                 } else {
-                    DatabaseManager databaseManager = new DatabaseManager(SuaLopHocActivity.this);
-                    databaseManager.readJSON_UPDATE(id, edtTenLopHocSua, edtThoiGianSua, edtThuSua, edtPhongHocSua);
+                    updateLopHoc_volley(urlUpdate);
                 }
             }
         });
+    }
+
+    private void updateLopHoc_volley(String url) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.toString().trim().equals("success")) {
+                            Toast.makeText(SuaLopHocActivity.this, "Update thành công", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SuaLopHocActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(SuaLopHocActivity.this, "Lỗi update", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(SuaLopHocActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                        Log.d("volleyError", "update: \n" +error.toString());
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> paramsUpdate = new HashMap<>();
+
+                paramsUpdate.put("id_update", String.valueOf(lopHoc.getId()));
+                paramsUpdate.put("tenLop_update",edtTenLopHocSua.getText().toString().trim());
+                paramsUpdate.put("thoiGian_update",edtThoiGianSua.getText().toString().trim());
+                paramsUpdate.put("thu_update",edtThuSua.getText().toString().trim());
+                paramsUpdate.put("phongHoc_updaete",edtPhongHocSua.getText().toString().trim());
+
+                return paramsUpdate;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
     private void timePickerDialog() {

@@ -35,6 +35,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity
             implements NavigationView.OnNavigationItemSelectedListener{
 
+    public static String ipConfig = "192.168.0.100";
+
     // tablayout va viewPgaer
     private TabLayout tablayout;
     private ViewPager viewPager;

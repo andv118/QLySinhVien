@@ -1,6 +1,5 @@
 package com.vanando.quanlysinhvien;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,12 +31,15 @@ import java.util.ArrayList;
 
 public class FragmentLop extends Fragment {
 
-    private String urlGetDatabase = "http://pritplust.000webhostapp.com/database.php";
+    private String urlGetDatabase = "http://" + MainActivity.ipConfig +"/webserviceQLSV/database.php";
 
     private View view;
     private ListView lvDanhSachLop;
     private AdapterLvLopHoc adapter;
     private ArrayList<LopHoc> arrLopHoc = new ArrayList<>();
+
+    public FragmentLop() {
+    }
 
     public static FragmentLop newIntance() {
         FragmentLop fragmentA = new FragmentLop();
@@ -56,11 +58,9 @@ public class FragmentLop extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_lop, container, false);
         initView();
-
-        // get data tu JSON
-        readJSON_GET();
-//        DatabaseManager databaseManager = new DatabaseManager(getActivity());
-//        databaseManager.readJSON_GET(arrLopHoc);
+        // set adapter
+        setAdapter();
+        readJSON_GET(urlGetDatabase);
 
         // set click item listview chuyen qua activity sinh vien
         lvDanhSachLop.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -73,9 +73,9 @@ public class FragmentLop extends Fragment {
         return view;
     }
 
-    public void readJSON_GET() {
+    private void readJSON_GET(String url) {
 
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlGetDatabase, null,
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -115,7 +115,6 @@ public class FragmentLop extends Fragment {
     private void setAdapter() {
         adapter = new AdapterLvLopHoc(getActivity(),R.layout.custom_lv_dslop,arrLopHoc);
         lvDanhSachLop.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
     }
 
     private void onClickView() {
