@@ -1,9 +1,7 @@
 package com.vanando.quanlysinhvien.activity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,11 +31,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -48,12 +41,32 @@ public class FragmentLop extends Fragment {
 
     //url
     UrlConnect url = new UrlConnect();
-    // asyncTask
 
     private View view;
     private ListView lvDanhSachLop;
     private AdapterLvLopHoc adapter;
     private ArrayList<LopHoc> arrLopHoc = new ArrayList<>();
+
+    ObjArrIdLop objArrIdLop;
+    private Handler handler;
+
+    public FragmentLop() {
+    }
+
+    public ObjArrIdLop getObjArrIdLop() {
+        return objArrIdLop;
+    }
+
+    public void setObjArrIdLop(ObjArrIdLop objArrIdLop) {
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+//                objArrIdLop = msg.obj;
+            }
+        };
+        this.objArrIdLop = objArrIdLop;
+    }
 
     public static FragmentLop newIntance() {
         FragmentLop fragmentA = new FragmentLop();
@@ -63,6 +76,7 @@ public class FragmentLop extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Nullable
@@ -109,6 +123,10 @@ public class FragmentLop extends Fragment {
                                 // set adapter
                                 setAdapter();
 
+                                objArrIdLop = new ObjArrIdLop(arrIdLopHoc2);
+                                Message message = new Message();
+                                    message.obj = objArrIdLop;
+                                    handler.sendMessage(message);
                             }
                         },
                         new Response.ErrorListener() {
@@ -159,3 +177,18 @@ public class FragmentLop extends Fragment {
     }
 }
 
+class ObjArrIdLop {
+    private ArrayList<Integer> arrIdLop;
+
+    public ObjArrIdLop(ArrayList<Integer> arrIdLop) {
+        this.arrIdLop = arrIdLop;
+    }
+
+    public ArrayList<Integer> getArrIdLop() {
+        return arrIdLop;
+    }
+
+    public void setArrIdLop(ArrayList<Integer> arrIdLop) {
+        this.arrIdLop = arrIdLop;
+    }
+}
