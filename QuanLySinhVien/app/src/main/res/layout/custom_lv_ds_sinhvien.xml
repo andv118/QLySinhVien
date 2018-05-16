@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtLv_STT_SV"
+        android:layout_width="40dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:background="#a9214a"
+        android:gravity="center_vertical|center"
+        android:text="10"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/txtLv_Ten_SV"
+        android:layout_toRightOf="@+id/txtLv_STT_SV"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:padding="2dp"
+        android:text="Nguyen Van A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtLv_Ma_SV"
+        android:layout_below="@+id/txtLv_Ten_SV"
+        android:layout_toRightOf="@+id/txtLv_STT_SV"
+        android:textColor="#00796B"
+        android:gravity="center_vertical"
+        android:layout_alignLeft="@+id/txtLv_Ten_SV"
+        android:textSize="15sp"
+        android:padding="2dp"
+        android:text="B15DCVT002"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtLv_idLop_SV"
+        android:layout_below="@+id/txtLv_Ma_SV"
+        android:layout_alignLeft="@+id/txtLv_Ten_SV"
+        android:layout_toRightOf="@+id/txtLv_STT_SV"
+        android:textColor="#364183"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:padding="2dp"
+        android:text="id lop: 1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/imgLv_Menu_SV"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/baseline_more_vert_black_24dp" />
+
+</RelativeLayout>

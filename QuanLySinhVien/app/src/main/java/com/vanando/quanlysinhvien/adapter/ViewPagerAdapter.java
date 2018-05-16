@@ -1,8 +1,11 @@
-package com.vanando.quanlysinhvien;
+package com.vanando.quanlysinhvien.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.vanando.quanlysinhvien.activity.FragmentLop;
+import com.vanando.quanlysinhvien.activity.FragmentTKB;
 
 /**
  * Created by Admin on 4/20/2018.

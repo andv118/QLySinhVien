@@ -1,18 +1,24 @@
-package com.vanando.quanlysinhvien;
+package com.vanando.quanlysinhvien.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.vanando.quanlysinhvien.LopHoc;
+import com.vanando.quanlysinhvien.R;
 import com.vanando.quanlysinhvien.activity.SuaLopHocActivity;
 import com.vanando.quanlysinhvien.database.DatabaseManager;
+import com.vanando.quanlysinhvien.listener.OnDeleteLopHocListener;
+import com.vanando.quanlysinhvien.urlconnect.UrlConnect;
 
 import java.util.List;
 
@@ -22,19 +28,21 @@ import java.util.List;
 
 public class AdapterLvLopHoc extends BaseAdapter {
 
+    // url
+    UrlConnect url = new UrlConnect();
+
     private Context context;
     private int layout_Lh;
     private List<LopHoc> listLH;
 
     private int id;
+    OnDeleteLopHocListener mOnDeleteLopHocListener;
 
-//    private String name; // gán tên cho lớp học trong dialog xóa
-//    private int idDelete; // gán id cho lớp de lay ra truyen vao method
-
-    public AdapterLvLopHoc(Context context, int layout_Lh, List<LopHoc> listLH) {
+    public AdapterLvLopHoc(Context context, int layout_Lh, List<LopHoc> listLH, OnDeleteLopHocListener mOnDeleteLopHocListener) {
         this.context = context;
         this.layout_Lh = layout_Lh;
         this.listLH = listLH;
+        this.mOnDeleteLopHocListener = mOnDeleteLopHocListener;
     }
 
     @Override
@@ -54,12 +62,12 @@ public class AdapterLvLopHoc extends BaseAdapter {
 
     class ViewHolder {
         TextView txtSTT, txtTenLH, txtThoiGian, txtPhongHoc;
-        ImageView imgXoa, imgSua;
+        ImageView imgMenu;
     }
 
     @Override
     public View getView(final int position, View view, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         if (view == null) {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -76,8 +84,7 @@ public class AdapterLvLopHoc extends BaseAdapter {
         holder.txtPhongHoc = (TextView) view.findViewById(R.id.txtLvPhongHoc);
         holder.txtSTT = (TextView) view.findViewById(R.id.txtLvSTT);
 
-        holder.imgXoa = (ImageView) view.findViewById(R.id.imgLvXoa);
-        holder.imgSua = (ImageView) view.findViewById(R.id.imgLvSua);
+        holder.imgMenu = (ImageView) view.findViewById(R.id.imgLvMenu);
 
         // set text
         holder.txtTenLH.setText("MH: " + lopHoc.getTenLopHoc());
@@ -85,22 +92,31 @@ public class AdapterLvLopHoc extends BaseAdapter {
         holder.txtPhongHoc.setText("PH: " + lopHoc.getPhongHoc());
         holder.txtSTT.setText(String.valueOf(position));
 
-        // ckick vao sua
-        holder.imgSua.setOnClickListener(new View.OnClickListener() {
+        // click imgMenu
+        holder.imgMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, SuaLopHocActivity.class);
-                intent.putExtra("guiLopHoc", lopHoc);
-                context.startActivity(intent);
-            }
-        });
+                PopupMenu popupMenu = new PopupMenu(context, holder.imgMenu);
+                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
 
-        // click vao xoa
-        holder.imgXoa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteLopHocDialog(position);
+                        switch (item.getItemId()) {
+                            case R.id.itemPopupXoa:
+                                deleteLopHocDialog(position);
+                                break;
+                                case R.id.itemPopupSua:
+                                    Intent intent = new Intent(context, SuaLopHocActivity.class);
+                                    intent.putExtra("guiLopHoc", lopHoc);
+                                    context.startActivity(intent);
+                                    break;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
             }
         });
 
@@ -110,9 +126,9 @@ public class AdapterLvLopHoc extends BaseAdapter {
     private void deleteLopHocDialog(final int i) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 
+        alertDialog.setIcon(R.drawable.ic_notifications_none_black_24dp);
         alertDialog.setTitle("Xác nhận xóa: ");
         alertDialog.setMessage("Bạn có muốn xóa " + listLH.get(i).getTenLopHoc() + " không?");
-        alertDialog.setIcon(R.drawable.ic_notifications_none_black_24dp);
         // khong
         alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
@@ -124,9 +140,8 @@ public class AdapterLvLopHoc extends BaseAdapter {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 id = listLH.get(i).getId();
-                DatabaseManager databaseManager = new DatabaseManager(context);
-                databaseManager.readJSON_DELETE(id);
-
+                DatabaseManager database = new DatabaseManager(context);
+                database.readJSON_DELETE(id, mOnDeleteLopHocListener);
             }
         });
         alertDialog.show();

@@ -1,4 +1,4 @@
-package com.vanando.quanlysinhvien;
+package com.vanando.quanlysinhvien.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.vanando.quanlysinhvien.R;
 
 /**
  * Created by Admin on 4/19/2018.

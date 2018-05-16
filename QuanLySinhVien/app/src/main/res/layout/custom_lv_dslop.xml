@@ -36,7 +36,7 @@
         android:textSize="15sp"
         android:padding="2dp"
         android:text="TG: 9h-thu2"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content" />
 
     <TextView
@@ -52,21 +52,12 @@
         android:layout_height="wrap_content" />
 
     <ImageView
-        android:id="@+id/imgLvXoa"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/txtLvTenMonHoc"
-        android:layout_marginEnd="22dp"
-        android:layout_toStartOf="@+id/imgLvSua"
-        android:src="@drawable/ic_clear_black_24dp" />
-
-    <ImageView
-        android:id="@+id/imgLvSua"
+        android:id="@+id/imgLvMenu"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/txtLvTenMonHoc"
-        android:layout_marginEnd="13dp"
-        android:src="@drawable/ic_create_black_24dp" />
+        android:layout_marginEnd="14dp"
+        android:src="@drawable/baseline_more_vert_black_24dp" />
 
 </RelativeLayout>

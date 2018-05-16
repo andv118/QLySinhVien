@@ -12,7 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,10 +24,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.github.clans.fab.FloatingActionMenu;
 import com.vanando.quanlysinhvien.R;
-import com.vanando.quanlysinhvien.ViewPagerAdapter;
+import com.vanando.quanlysinhvien.adapter.ViewPagerAdapter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity
     private com.github.clans.fab.FloatingActionButton fabLopHoc, fabSinhVien;
     // navigation
     private DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
+    private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
 
     @Override
@@ -60,6 +59,7 @@ public class MainActivity extends AppCompatActivity
         floatingButtonAction();
         // navigation
         creatDrawer();
+
     }
 
     // menu Khoi Tao
@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "them sinh vien", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ThemSinhVienActivity.class);
+                startActivity(intent);
             }
         });
 

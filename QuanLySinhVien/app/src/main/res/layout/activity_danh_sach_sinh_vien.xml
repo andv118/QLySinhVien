@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.DanhSachSinhVien">
+
+    <TextView
+        android:id="@+id/txtDanhSachSv"
+        android:background="#B00020"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:text="Danh sách sinh viên"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtDSSVtenLop"
+        android:background="#B00020"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/txtDanhSachSv"
+        android:text="ten Lop"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtDSSVid"
+        android:background="#B00020"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:layout_toRightOf="@+id/txtDSSVtenLop"
+        android:layout_below="@+id/txtDanhSachSv"
+        android:text="id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:id="@+id/listviewDanhSachSV"
+        android:layout_marginBottom="75dp"
+        android:layout_below="@+id/txtDSSVtenLop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+    <include layout="@layout/floating_button_layout"></include>
+
+</RelativeLayout>
