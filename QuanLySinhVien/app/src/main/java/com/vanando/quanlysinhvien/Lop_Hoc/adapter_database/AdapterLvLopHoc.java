@@ -1,4 +1,4 @@
-package com.vanando.quanlysinhvien.adapter;
+package com.vanando.quanlysinhvien.Lop_Hoc.adapter_database;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,12 +12,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.vanando.quanlysinhvien.LopHoc;
+import com.vanando.quanlysinhvien.Lop_Hoc.object.LopHoc;
 import com.vanando.quanlysinhvien.R;
-import com.vanando.quanlysinhvien.activity.SuaLopHocActivity;
-import com.vanando.quanlysinhvien.database.DatabaseManager;
+import com.vanando.quanlysinhvien.Lop_Hoc.activity.SuaLopHocActivity;
+import com.vanando.quanlysinhvien.Lop_Hoc.adapter_database.DatabaseManager;
 import com.vanando.quanlysinhvien.listener.OnDeleteLopHocListener;
 import com.vanando.quanlysinhvien.urlconnect.UrlConnect;
 

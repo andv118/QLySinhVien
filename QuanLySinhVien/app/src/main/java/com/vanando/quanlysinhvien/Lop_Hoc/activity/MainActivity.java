@@ -1,4 +1,4 @@
-package com.vanando.quanlysinhvien.activity;
+package com.vanando.quanlysinhvien.Lop_Hoc.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -17,19 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.vanando.quanlysinhvien.R;
-import com.vanando.quanlysinhvien.adapter.ViewPagerAdapter;
+import com.vanando.quanlysinhvien.Sinh_Vien.activity.ThemSV2Activity;
+import com.vanando.quanlysinhvien.Sinh_Vien.activity.ThemSinhVienActivity;
+import com.vanando.quanlysinhvien.Lop_Hoc.adapter_database.ViewPagerAdapter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import static com.vanando.quanlysinhvien.Constants.REQUEST_ADD_SV;
 
 public class MainActivity extends AppCompatActivity
             implements NavigationView.OnNavigationItemSelectedListener{
@@ -85,7 +78,8 @@ public class MainActivity extends AppCompatActivity
     }
     // floattingButton
     private void floatingButtonAction() {
-
+        fabLopHoc.setVisibility(View.VISIBLE);
+        fabSinhVien.setVisibility(View.VISIBLE);
         fabLopHoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,11 +91,11 @@ public class MainActivity extends AppCompatActivity
         fabSinhVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "them sinh vien", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, ThemSinhVienActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, ThemSV2Activity.class);
+                startActivityForResult(intent, REQUEST_ADD_SV);
             }
         });
+        // chưa hứng kq
 
     }
     // toolbar

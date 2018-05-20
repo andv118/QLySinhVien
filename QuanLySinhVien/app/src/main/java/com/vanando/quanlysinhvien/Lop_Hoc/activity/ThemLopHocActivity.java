@@ -1,24 +1,15 @@
-package com.vanando.quanlysinhvien.activity;
+package com.vanando.quanlysinhvien.Lop_Hoc.activity;
 
-import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.vanando.quanlysinhvien.DialogThoiGian;
-import com.vanando.quanlysinhvien.database.DatabaseManager;
+import com.vanando.quanlysinhvien.Lop_Hoc.dialog.DialogThoiGian;
+import com.vanando.quanlysinhvien.Lop_Hoc.adapter_database.DatabaseManager;
 import com.vanando.quanlysinhvien.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class ThemLopHocActivity extends AppCompatActivity {
 

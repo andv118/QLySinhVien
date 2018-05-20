@@ -1,4 +1,4 @@
-package com.vanando.quanlysinhvien.adapter;
+package com.vanando.quanlysinhvien.Sinh_Vien.adapter_database;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,21 +12,20 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.vanando.quanlysinhvien.R;
-import com.vanando.quanlysinhvien.SinhVien;
-import com.vanando.quanlysinhvien.activity.SuaLopHocActivity;
-import com.vanando.quanlysinhvien.activity.SuaSinhVienActivity;
-import com.vanando.quanlysinhvien.database.DatabaseManager;
-import com.vanando.quanlysinhvien.database.DatabaseSinhVien;
+import com.vanando.quanlysinhvien.Sinh_Vien.activity.DanhSachSinhVien;
+import com.vanando.quanlysinhvien.Sinh_Vien.object.SinhVien;
+import com.vanando.quanlysinhvien.Sinh_Vien.activity.SuaSinhVienActivity;
 import com.vanando.quanlysinhvien.listener.OnDeleteLopHocListener;
 
 import java.util.List;
 
+import static com.vanando.quanlysinhvien.Constants.REQUEST_ADD_SV;
+
 public class AdapterLvSinhVien extends BaseAdapter {
 
-    private Context context;
+    private DanhSachSinhVien context;
     private int layout_SV;
     private List<SinhVien> list_SV;
     private OnDeleteLopHocListener mOnDeleteLopHocListener;
@@ -34,7 +33,7 @@ public class AdapterLvSinhVien extends BaseAdapter {
     private int id_SV;
 
     public AdapterLvSinhVien(Context context, int layout_SV, List<SinhVien> list_SV, OnDeleteLopHocListener mOnDeleteLopHocListener) {
-        this.context = context;
+        this.context = (DanhSachSinhVien) context;
         this.layout_SV = layout_SV;
         this.list_SV = list_SV;
         this.mOnDeleteLopHocListener = mOnDeleteLopHocListener;
@@ -100,7 +99,7 @@ public class AdapterLvSinhVien extends BaseAdapter {
                             case R.id.itemPopupSua_SV:
                                 Intent intent = new Intent(context, SuaSinhVienActivity.class);
                                 intent.putExtra("guiSinhVien", sinhVien);
-                                context.startActivity(intent);
+                                context.startActivityForResult(intent, REQUEST_ADD_SV);
                                 break;
                             case R.id.itemPopupXoa_SV:
                                 deleteSinhVienDialog(position);

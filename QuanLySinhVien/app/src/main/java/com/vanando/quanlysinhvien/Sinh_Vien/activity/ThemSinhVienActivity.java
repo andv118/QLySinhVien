@@ -1,4 +1,4 @@
-package com.vanando.quanlysinhvien.activity;
+package com.vanando.quanlysinhvien.Sinh_Vien.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,22 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.vanando.quanlysinhvien.R;
-import com.vanando.quanlysinhvien.database.DatabaseSinhVien;
+import com.vanando.quanlysinhvien.Sinh_Vien.adapter_database.DatabaseSinhVien;
 
-import java.util.ArrayList;
+import static com.vanando.quanlysinhvien.Constants.DEFAULT_VALUES_PUT_INT;
 
 public class ThemSinhVienActivity extends AppCompatActivity {
 
     private Button btnHuySv, btnThemSv;
     private EditText edtTenSv, edtMaSv, edtIdLop;
-    private Spinner spinIdLop;
     private int idLopHocSV;
-    private String tenLopHocSV;
-    private final int defaultValues = 1234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +29,11 @@ public class ThemSinhVienActivity extends AppCompatActivity {
         getIntentSV();
         // set click
         setClick();
-
     }
 
     private void getIntentSV() {
         Intent intent = getIntent();
-        idLopHocSV = intent.getIntExtra("idLopSV",defaultValues);
-        tenLopHocSV = intent.getStringExtra("tenLopHoc");
+        idLopHocSV = intent.getIntExtra("idLopSV", DEFAULT_VALUES_PUT_INT);
         edtIdLop.setText(String.valueOf(idLopHocSV));
     }
 
@@ -64,7 +58,9 @@ public class ThemSinhVienActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else {
                     DatabaseSinhVien databaseSinhVien = new DatabaseSinhVien(ThemSinhVienActivity.this);
-                            databaseSinhVien.raedJSON_INSERT_SV(edtIdLop, edtTenSv, edtMaSv);
+                    databaseSinhVien.raedJSON_INSERT_SV(edtIdLop, edtTenSv, edtMaSv);
+                    setResult(RESULT_OK);
+                    finish();
                 }
 
             }
@@ -77,6 +73,5 @@ public class ThemSinhVienActivity extends AppCompatActivity {
         edtTenSv = (EditText) findViewById(R.id.edtTenSinhVien);
         edtMaSv = (EditText) findViewById(R.id.edtMaSinhVien);
         edtIdLop = (EditText) findViewById(R.id.edtIdLopHoc);
-        spinIdLop = (Spinner) findViewById(R.id.spinnerIdLopHoc);
     }
 }

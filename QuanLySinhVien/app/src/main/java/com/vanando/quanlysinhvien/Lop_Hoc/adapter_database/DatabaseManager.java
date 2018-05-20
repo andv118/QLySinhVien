@@ -1,4 +1,4 @@
-package com.vanando.quanlysinhvien.database;
+package com.vanando.quanlysinhvien.Lop_Hoc.adapter_database;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,34 +11,84 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.vanando.quanlysinhvien.activity.MainActivity;
-import com.vanando.quanlysinhvien.activity.SuaSinhVienActivity;
+import com.vanando.quanlysinhvien.Lop_Hoc.object.LopHoc;
+import com.vanando.quanlysinhvien.Lop_Hoc.activity.MainActivity;
 import com.vanando.quanlysinhvien.listener.OnDeleteLopHocListener;
-import com.vanando.quanlysinhvien.urlconnect.UrlConnectSinhVien;
+import com.vanando.quanlysinhvien.urlconnect.UrlConnect;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DatabaseSinhVien {
+/**
+ * Created by Admin on 5/7/2018.
+ */
 
-    // url connect sinh vien
-    private final UrlConnectSinhVien url = new UrlConnectSinhVien();
+public class DatabaseManager {
+
+    // url
+    private final UrlConnect url = new UrlConnect();
     private Context context;
 
-    public DatabaseSinhVien(Context context) {
+    public DatabaseManager(Context context) {
         this.context = context;
     }
 
-    public void raedJSON_INSERT_SV(final EditText edtIdLop, final EditText edtTenSV, final EditText edtMaSV ) {
+    public void readJSON_GET(final ArrayList<LopHoc> arrLopHoc) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url.getUrlInsert_SV(),
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url.getUrlGetDatabase(), null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        arrLopHoc.clear();
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                int idLop = jsonObject.getInt("ID");
+                                String tenLop = jsonObject.getString("TenLop");
+                                String thoiGian = jsonObject.getString("THoiGian");
+                                String thu = jsonObject.getString("Thu");
+                                String phongHoc = jsonObject.getString("PhongHoc");
+
+                                arrLopHoc.add(new LopHoc(idLop,tenLop,thoiGian,thu,phongHoc));
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("errorVolley","loi : \t" + error.toString());
+                        Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                requestQueue.add(jsonArrayRequest);
+    }
+    
+    public void raedJSON_INSERT(final EditText edtTen, final EditText edtTg, final EditText edtThu, final EditText edtPhong) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url.getUrlInsert(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if (response.toString().trim().equals("success")) {
-                            Toast.makeText(context, "Thêm thành công sinh viên", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                            context.startActivity(new Intent(context, MainActivity.class));
                         } else {
                             Toast.makeText(context, "Lỗi thêm", Toast.LENGTH_SHORT).show();
                         }
@@ -56,9 +106,10 @@ public class DatabaseSinhVien {
                 // Map dinh dang cho kieu tra ve
                 Map<String, String> params = new HashMap<>();
                 // put len param
-                params.put("idLopInsert",edtIdLop.getText().toString().trim());
-                params.put("tenSinhVienInsert",edtTenSV.getText().toString().trim());
-                params.put("maSinhVienInsert",edtMaSV.getText().toString().trim());
+                params.put("tenLop_Insert",edtTen.getText().toString().trim());
+                params.put("thoiGian_Insert",edtTg.getText().toString().trim());
+                params.put("thu_Insert",edtThu.getText().toString().trim());
+                params.put("phongHoc_Insert",edtPhong.getText().toString().trim());
                 return params;
             }
         };
@@ -67,9 +118,9 @@ public class DatabaseSinhVien {
         requestQueue.add(stringRequest);
     }
 
-    public void readJSON_UPDATE_SV(final int id, final EditText edtTen_SV, final EditText edtMa_SV) {
+    public void readJSON_UPDATE(final int id, final EditText edtTen, final EditText edtTg, final EditText edtThu, final EditText edtPhong) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url.getUrlUpdate_SV(),
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url.getUrlUpdate(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -94,9 +145,11 @@ public class DatabaseSinhVien {
 
                 Map<String, String> paramsUpdate = new HashMap<>();
 
-                paramsUpdate.put("id_update_SV", String.valueOf(id));
-                paramsUpdate.put("ten_update_SV",edtTen_SV.getText().toString().trim());
-                paramsUpdate.put("ma_update_SV",edtMa_SV.getText().toString().trim());
+                paramsUpdate.put("id_update", String.valueOf(id));
+                paramsUpdate.put("tenLop_update",edtTen.getText().toString().trim());
+                paramsUpdate.put("thoiGian_update",edtTg.getText().toString().trim());
+                paramsUpdate.put("thu_update",edtThu.getText().toString().trim());
+                paramsUpdate.put("phongHoc_updaete",edtPhong.getText().toString().trim());
 
                 return paramsUpdate;
             }
@@ -106,9 +159,9 @@ public class DatabaseSinhVien {
         requestQueue.add(stringRequest);
     }
 
-    public void readJSON_DELETE_SV(final int id, final OnDeleteLopHocListener mOnDeleteLopHocListener) {
+    public void readJSON_DELETE(final int id, final OnDeleteLopHocListener mOnDeleteLopHocListener) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url.getUrlDelete_SV(),
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url.getUrlDelete(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -130,7 +183,7 @@ public class DatabaseSinhVien {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> paramsDelete = new HashMap<>();
-                paramsDelete.put("id_delete_SV", String.valueOf(id));
+                paramsDelete.put("id_delete", String.valueOf(id));
                 return paramsDelete;
             }
         };

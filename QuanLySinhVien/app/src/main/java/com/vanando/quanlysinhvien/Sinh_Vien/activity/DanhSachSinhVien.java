@@ -1,4 +1,4 @@
-package com.vanando.quanlysinhvien.activity;
+package com.vanando.quanlysinhvien.Sinh_Vien.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +16,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.vanando.quanlysinhvien.adapter.AdapterLvSinhVien;
+import com.vanando.quanlysinhvien.Sinh_Vien.adapter_database.AdapterLvSinhVien;
 import com.vanando.quanlysinhvien.R;
-import com.vanando.quanlysinhvien.SinhVien;
+import com.vanando.quanlysinhvien.Sinh_Vien.object.SinhVien;
 import com.vanando.quanlysinhvien.listener.OnDeleteLopHocListener;
 import com.vanando.quanlysinhvien.urlconnect.UrlConnectSinhVien;
 
@@ -27,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import static com.vanando.quanlysinhvien.Constants.REQUEST_ADD_SV;
 
 public class DanhSachSinhVien extends AppCompatActivity {
 
@@ -45,6 +47,7 @@ public class DanhSachSinhVien extends AppCompatActivity {
     private AdapterLvSinhVien adapter_SV;
     private ArrayList<SinhVien> arr_SV = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,6 @@ public class DanhSachSinhVien extends AppCompatActivity {
     }
 
     public void readJSON_GET_SV() {
-
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url.getUrlGetDatabase_SV(), null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -112,17 +114,18 @@ public class DanhSachSinhVien extends AppCompatActivity {
     }
 
     private void setClickItem() {
-       lvDanhSach_SV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-           @Override
-           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               Toast.makeText(DanhSachSinhVien.this, arr_SV.get(position).getTenSv(), Toast.LENGTH_SHORT).show();
-           }
-       });
+        lvDanhSach_SV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(DanhSachSinhVien.this, arr_SV.get(position).getTenSv(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void floatingButtonAction() {
 
-        fabLopHoc.hideButtonInMenu(true);
+        fabLopHoc.setVisibility(View.GONE);
+        fabSinhVien.setVisibility(View.VISIBLE);
         // fab them sinh vien
         fabSinhVien.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,9 +133,21 @@ public class DanhSachSinhVien extends AppCompatActivity {
                 Intent intent1 = new Intent(DanhSachSinhVien.this, ThemSinhVienActivity.class);
                 intent1.putExtra("idLopSV", idLopHoc);
                 intent1.putExtra("tenLopHoc", tenLopHoc);
-                startActivity(intent1);
+                startActivityForResult(intent1, REQUEST_ADD_SV);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_ADD_SV) {
+            if (resultCode == RESULT_OK) {
+                //refresh adapter
+                readJSON_GET_SV();
+            }
+        }
     }
 
     private void getIntent_DanhSach_SV() {
@@ -150,5 +165,6 @@ public class DanhSachSinhVien extends AppCompatActivity {
         fabSinhVien = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fabThemSinhVien);
         lvDanhSach_SV = (ListView) findViewById(R.id.listviewDanhSachSV);
     }
+
 
 }

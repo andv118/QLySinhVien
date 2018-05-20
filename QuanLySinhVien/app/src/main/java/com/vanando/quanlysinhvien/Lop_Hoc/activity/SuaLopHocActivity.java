@@ -1,24 +1,17 @@
-package com.vanando.quanlysinhvien.activity;
+package com.vanando.quanlysinhvien.Lop_Hoc.activity;
 
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.vanando.quanlysinhvien.DialogThoiGian;
-import com.vanando.quanlysinhvien.database.DatabaseManager;
-import com.vanando.quanlysinhvien.LopHoc;
+import com.vanando.quanlysinhvien.Lop_Hoc.dialog.DialogThoiGian;
+import com.vanando.quanlysinhvien.Lop_Hoc.adapter_database.DatabaseManager;
+import com.vanando.quanlysinhvien.Lop_Hoc.object.LopHoc;
 import com.vanando.quanlysinhvien.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class SuaLopHocActivity extends AppCompatActivity {
 
@@ -39,15 +32,12 @@ public class SuaLopHocActivity extends AppCompatActivity {
         LopHoc lopHoc = (LopHoc) intent.getSerializableExtra("guiLopHoc");
 
         id = lopHoc.getId();
-
         edtTenLopHocSua.setText(lopHoc.getTenLopHoc());
         edtPhongHocSua.setText(lopHoc.getPhongHoc());
         edtThoiGianSua.setText(lopHoc.getThoiGian());
         edtThuSua.setText(lopHoc.getThuHoc());
-
         // click button
         setClickButton();
-
     }
 
     private void setClickButton() {
@@ -55,10 +45,8 @@ public class SuaLopHocActivity extends AppCompatActivity {
         btnThoiGianSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DialogThoiGian dialogThoiGian = new DialogThoiGian(SuaLopHocActivity.this);
                 dialogThoiGian.setDialog(edtThoiGianSua, edtThuSua);
-
             }
         });
 
@@ -73,12 +61,11 @@ public class SuaLopHocActivity extends AppCompatActivity {
         btnThemSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String lopHoc = edtTenLopHocSua.getText().toString().trim();
                 String thoiGian = edtThoiGianSua.getText().toString().trim();
                 String thu = edtThuSua.getText().toString().trim();
                 String phongHoc = edtTenLopHocSua.getText().toString().trim();
-                
+
                 if (lopHoc.isEmpty() || thoiGian.isEmpty() || thu.isEmpty() || phongHoc.isEmpty()) {
                     Toast.makeText(SuaLopHocActivity.this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                 } else {
@@ -90,7 +77,6 @@ public class SuaLopHocActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
         edtTenLopHocSua = (EditText) findViewById(R.id.edtTenLopHocSua);
         edtPhongHocSua = (EditText) findViewById(R.id.edtPhongHocSua);
         edtThoiGianSua = (EditText) findViewById(R.id.edtThoiGianSua);

@@ -1,4 +1,4 @@
-package com.vanando.quanlysinhvien;
+package com.vanando.quanlysinhvien.Lop_Hoc.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,9 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.vanando.quanlysinhvien.activity.ThemLopHocActivity;
+import com.vanando.quanlysinhvien.R;
 
 /**
  * Created by Admin on 5/13/2018.

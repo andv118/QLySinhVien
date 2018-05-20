@@ -3,7 +3,7 @@ package com.vanando.quanlysinhvien.urlconnect;
 public class UrlConnectSinhVien {
 
     //url localhost
-    public static String ipV4 = "192.168.0.101";
+    public static String ipV4 = "192.168.1.16";
     private String urlGetDatabase_SV = "http://" + ipV4 + "/webserviceQLSV/databasesinhvien.php";
     private String urlInsert_SV = "http://" + ipV4 + "/webserviceQLSV/insertsinhvien.php";
     private String urlUpdate_SV = "http://" + ipV4 + "/webserviceQLSV/updatesinhvien.php";

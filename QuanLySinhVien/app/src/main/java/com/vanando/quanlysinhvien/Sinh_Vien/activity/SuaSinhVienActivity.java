@@ -1,4 +1,4 @@
-package com.vanando.quanlysinhvien.activity;
+package com.vanando.quanlysinhvien.Sinh_Vien.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.vanando.quanlysinhvien.DialogThoiGian;
-import com.vanando.quanlysinhvien.LopHoc;
 import com.vanando.quanlysinhvien.R;
-import com.vanando.quanlysinhvien.SinhVien;
-import com.vanando.quanlysinhvien.database.DatabaseManager;
-import com.vanando.quanlysinhvien.database.DatabaseSinhVien;
+import com.vanando.quanlysinhvien.Sinh_Vien.object.SinhVien;
+import com.vanando.quanlysinhvien.Sinh_Vien.adapter_database.DatabaseSinhVien;
 
 public class SuaSinhVienActivity extends AppCompatActivity {
 
@@ -58,6 +55,8 @@ public class SuaSinhVienActivity extends AppCompatActivity {
                 } else {
                     DatabaseSinhVien databaseSinhVien = new DatabaseSinhVien(SuaSinhVienActivity.this);
                     databaseSinhVien.readJSON_UPDATE_SV(id_SV, edtTen_SV, edtMa_SV);
+                    setResult(RESULT_OK);
+                    finish();
                 }
             }
         });

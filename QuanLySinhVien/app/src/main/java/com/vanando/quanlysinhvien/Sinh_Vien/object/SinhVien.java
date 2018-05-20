@@ -1,4 +1,4 @@
-package com.vanando.quanlysinhvien;
+package com.vanando.quanlysinhvien.Sinh_Vien.object;
 
 import java.io.Serializable;
 

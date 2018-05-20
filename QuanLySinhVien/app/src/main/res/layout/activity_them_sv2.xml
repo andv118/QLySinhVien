@@ -8,7 +8,7 @@
     tools:context=".Sinh_Vien.activity.ThemSinhVienActivity">
 
     <TextView
-        android:id="@+id/titleThemSv"
+        android:id="@+id/titleThemSv2"
         android:background="#BF360C"
         android:textColor="#000000"
         android:textSize="30sp"
@@ -20,20 +20,20 @@
 
     // ten
     <TextView
-        android:id="@+id/tensinhvien"
+        android:id="@+id/tensinhvien2"
         android:layout_marginTop="5dp"
         android:padding="2dp"
         android:textColor="#01579B"
-        android:layout_below="@+id/titleThemSv"
+        android:layout_below="@+id/titleThemSv2"
         android:textSize="20sp"
         android:text="Tên sinh viên: "
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/edtTenSinhVien"
+        android:id="@+id/edtTenSinhVien_2"
         android:gravity="center_vertical"
-        android:layout_below="@+id/tensinhvien"
+        android:layout_below="@+id/tensinhvien2"
         android:textSize="25sp"
         android:hint="Sinh viên"
         android:layout_width="match_parent"
@@ -41,9 +41,9 @@
 
     // ma sv
     <TextView
-        android:id="@+id/masinhvien"
+        android:id="@+id/masinhvien_2"
         android:layout_marginTop="5dp"
-        android:layout_below="@+id/edtTenSinhVien"
+        android:layout_below="@+id/edtTenSinhVien_2"
         android:padding="2dp"
         android:textColor="#01579B"
         android:textSize="20sp"
@@ -52,9 +52,9 @@
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/edtMaSinhVien"
+        android:id="@+id/edtMaSinhVien_2"
         android:gravity="center_vertical"
-        android:layout_below="@+id/masinhvien"
+        android:layout_below="@+id/masinhvien_2"
         android:textSize="25sp"
         android:hint="Mã sinh viên"
         android:layout_width="match_parent"
@@ -62,9 +62,9 @@
 
     // thoi gian
     <TextView
-        android:id="@+id/idlophoc"
+        android:id="@+id/idlophoc2"
         android:layout_marginTop="15dp"
-        android:layout_below="@+id/edtMaSinhVien"
+        android:layout_below="@+id/edtMaSinhVien_2"
         android:padding="2dp"
         android:textColor="#01579B"
         android:textSize="20sp"
@@ -72,11 +72,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Spinner
+        android:id="@+id/spinnerIdLopHoc_2"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/idlophoc2"
+        android:layout_alignParentEnd="true" />
+
+
     <EditText
-        android:id="@+id/edtIdLopHoc"
+        android:id="@+id/edtIdLopHoc2"
         android:gravity="center_vertical"
-        android:layout_below="@+id/idlophoc"
-        android:enabled="false"
+        android:layout_below="@+id/idlophoc2"
         android:textSize="25sp"
         android:hint="id lớp học"
         android:layout_width="match_parent"
@@ -84,7 +91,7 @@
 
 
     <Button
-        android:id="@+id/btnHuySinhVien"
+        android:id="@+id/btnHuySinhVien2"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
@@ -96,11 +103,11 @@
         android:text="Hủy" />
 
     <Button
-        android:id="@+id/btnThemSinhVien"
+        android:id="@+id/btnThemSinhVien2"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/btnHuySinhVien"
+        android:layout_alignTop="@+id/btnHuySinhVien2"
         android:layout_marginEnd="50dp"
         android:gravity="center"
         android:padding="5dp"
