@@ -96,22 +96,20 @@ public class AdapterLvLopHoc extends BaseAdapter {
         holder.imgMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 PopupMenu popupMenu = new PopupMenu(context, holder.imgMenu);
                 popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-
                         switch (item.getItemId()) {
                             case R.id.itemPopupXoa:
                                 deleteLopHocDialog(position);
                                 break;
-                                case R.id.itemPopupSua:
-                                    Intent intent = new Intent(context, SuaLopHocActivity.class);
-                                    intent.putExtra("guiLopHoc", lopHoc);
-                                    context.startActivity(intent);
-                                    break;
+                            case R.id.itemPopupSua:
+                                Intent intent = new Intent(context, SuaLopHocActivity.class);
+                                intent.putExtra("guiLopHoc", lopHoc);
+                                context.startActivity(intent);
+                                break;
                         }
                         return false;
                     }

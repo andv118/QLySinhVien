@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/Cust_SV_Adapter_DiemDanh_Ten"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:text="Tran Thi Huong"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content" />
+
+
+    <RadioGroup
+        android:id="@+id/Cust_SV_Adapter_DiemDanh_RadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="34dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/Cust_SV_Adapter_DiemDanh_RadioButtonNghi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/Cust_SV_Adapter_DiemDanh_RadioButtonDi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:checked="true" />
+
+    </RadioGroup>
+
+</RelativeLayout>

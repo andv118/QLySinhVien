@@ -3,16 +3,16 @@ package com.vanando.quanlysinhvien.urlconnect;
 public class UrlConnectSinhVien {
 
     //url localhost
-    public static String ipV4 = "192.168.1.16";
+    public static String ipV4 = "192.168.0.101";
     private String urlGetDatabase_SV = "http://" + ipV4 + "/webserviceQLSV/databasesinhvien.php";
     private String urlInsert_SV = "http://" + ipV4 + "/webserviceQLSV/insertsinhvien.php";
     private String urlUpdate_SV = "http://" + ipV4 + "/webserviceQLSV/updatesinhvien.php";
     private String urlDelete_SV = "http://" + ipV4 + "/webserviceQLSV/deletesinhvien.php";
     // url web
-//    private String urlGetDatabase_SV = "http://pritplust.000webhostapp.com/database.php";
-//    private String urlInsert_SV = "http://pritplust.000webhostapp.com/insert.php";
-//    private String urlUpdate_SV = "http://pritplust.000webhostapp.com/update.php";
-//    private String urlDelete_SV = "http://pritplust.000webhostapp.com/delete.php";
+//    private String urlGetDatabase_SV = "http://pritplust.000webhostapp.com/databasesinhvien.php";
+//    private String urlInsert_SV = "http://pritplust.000webhostapp.com/insertsinhvien.php";
+//    private String urlUpdate_SV = "http://pritplust.000webhostapp.com/updatesinhvien.php";
+//    private String urlDelete_SV = "http://pritplust.000webhostapp.com/deletesinhvien.php";
 
     public UrlConnectSinhVien() {
     }

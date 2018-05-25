@@ -1,54 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Sinh_Vien.activity.DanhSachSinhVien">
 
-    <TextView
-        android:id="@+id/txtDanhSachSv"
-        android:background="#B00020"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:text="Danh sách sinh viên"
+    // appBar
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/SV_appBar_DSSV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        // toolBar
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/SV_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="#F44336"/>
+
+    </android.support.design.widget.AppBarLayout>
 
     <TextView
         android:id="@+id/txtDSSVtenLop"
-        android:background="#B00020"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:layout_below="@+id/txtDanhSachSv"
-        android:text="ten Lop"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/txtDSSVid"
-        android:background="#B00020"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:layout_toRightOf="@+id/txtDSSVtenLop"
-        android:layout_below="@+id/txtDanhSachSv"
-        android:text="id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SV_appBar_DSSV"
+        android:background="#F44336"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="ten Lop"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
 
     <ListView
         android:id="@+id/listviewDanhSachSV"
-        android:layout_marginBottom="75dp"
-        android:layout_below="@+id/txtDSSVtenLop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txtDSSVtenLop"
+        android:layout_marginBottom="75dp">
 
     </ListView>
 

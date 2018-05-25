@@ -32,6 +32,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.vanando.quanlysinhvien.MyApplication.app;
+
 /**
  * Created by Admin on 4/19/2018.
  */
@@ -40,19 +42,18 @@ public class FragmentLop extends Fragment {
 
     //url
     UrlConnect url = new UrlConnect();
-
+    // adapter
     private View view;
     private ListView lvDanhSachLop;
     private AdapterLvLopHoc adapter;
-    private ArrayList<LopHoc> arrLopHoc = new ArrayList<>();
-    public static MyApplication app;
+    private ArrayList<LopHoc> arrLopHoc;
+    // bien
 
     public FragmentLop() {
     }
 
     public static FragmentLop newIntance() {
         FragmentLop fragmentA = new FragmentLop();
-        app = MyApplication.getApp();
         return fragmentA;
     }
 
@@ -69,6 +70,8 @@ public class FragmentLop extends Fragment {
         initView();
         // get data tu JSON
         readJSON_GET();
+        // set adapter
+        setAdapter();
         // set click view
         onClickView();
 
@@ -98,13 +101,8 @@ public class FragmentLop extends Fragment {
                                 e.printStackTrace();
                             }
                         }
-                        if (app != null) {
-                            app.appArrLopHoc.clear();
-                            app.appArrLopHoc.addAll(arrLopHoc);
-                        }
                         // set adapter
                         setAdapter();
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -137,7 +135,6 @@ public class FragmentLop extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String tenLopHocIntent = arrLopHoc.get(position).getTenLopHoc();
                 int idLopHocIntent = arrLopHoc.get(position).getId();
-
                 Intent intent = new Intent(getActivity(), DanhSachSinhVien.class);
                 intent.putExtra("tenLopHoc", tenLopHocIntent);
                 intent.putExtra("idLopHoc", idLopHocIntent);
@@ -148,5 +145,6 @@ public class FragmentLop extends Fragment {
 
     private void initView() {
         lvDanhSachLop = (ListView) view.findViewById(R.id.listviewFragmentLop);
+        arrLopHoc = new ArrayList<>();
     }
 }

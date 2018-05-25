@@ -3,8 +3,9 @@ package com.vanando.quanlysinhvien;
 import android.content.res.Configuration;
 import android.app.Application;
 
+import com.vanando.quanlysinhvien.Diem_So.object.DiemSo;
 import com.vanando.quanlysinhvien.Lop_Hoc.object.LopHoc;
-import com.vanando.quanlysinhvien.urlconnect.UrlConnect;
+import com.vanando.quanlysinhvien.Sinh_Vien.object.SinhVien;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,8 @@ public class MyApplication extends Application {
 
     public static MyApplication app;
     public static ArrayList<LopHoc> appArrLopHoc = new ArrayList<>();
-    private final UrlConnect url = new UrlConnect();
+    public static ArrayList<SinhVien> appArrSinhVien = new ArrayList<>();
+    public static ArrayList<DiemSo> appArrDiemSo = new ArrayList<>();
 
     public static MyApplication getApp() {
         app = new MyApplication();

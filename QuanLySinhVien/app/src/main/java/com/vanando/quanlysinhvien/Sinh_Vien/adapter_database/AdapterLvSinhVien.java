@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.vanando.quanlysinhvien.Diem_So.database.DatabaseDiem;
 import com.vanando.quanlysinhvien.R;
 import com.vanando.quanlysinhvien.Sinh_Vien.activity.DanhSachSinhVien;
 import com.vanando.quanlysinhvien.Sinh_Vien.object.SinhVien;
@@ -22,6 +23,7 @@ import com.vanando.quanlysinhvien.listener.OnDeleteLopHocListener;
 import java.util.List;
 
 import static com.vanando.quanlysinhvien.Constants.REQUEST_ADD_SV;
+import static com.vanando.quanlysinhvien.MyApplication.app;
 
 public class AdapterLvSinhVien extends BaseAdapter {
 
@@ -116,7 +118,7 @@ public class AdapterLvSinhVien extends BaseAdapter {
     }
 
     private void deleteSinhVienDialog(final int i) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 
         alertDialog.setIcon(R.drawable.ic_notifications_none_black_24dp);
         alertDialog.setTitle("Xác nhận xóa: ");

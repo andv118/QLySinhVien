@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <TextView
+        android:id="@+id/DS_txtTen_XepLoai"
+        android:layout_width="170dp"
+        android:layout_height="match_parent"
+        android:text="Pham Vu Viet Thang"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/DS_txtDiemTB_XepLoai"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="8.5"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/DS_txtDiemQuyDoi_XepLoai"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="A"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/DS_txtXL_XepLoai"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Gioi"
+            android:textSize="15sp" />
+
+</LinearLayout>

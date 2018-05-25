@@ -7,7 +7,7 @@ package com.vanando.quanlysinhvien.urlconnect;
 public class UrlConnect {
 
     //url localhost
-    public static String ipV4 = "192.168.1.16";
+    public static String ipV4 = "192.168.0.101";
     private String urlGetDatabase = "http://" + ipV4 + "/webserviceQLSV/database.php";
     private String urlInsert = "http://" + ipV4 + "/webserviceQLSV/insert.php";
     private String urlUpdate = "http://" + ipV4 + "/webserviceQLSV/update.php";

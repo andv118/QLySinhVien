@@ -22,8 +22,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         Fragment frag = null;
         switch (position) {
             case 0:
-               frag = FragmentLop.newIntance();
-               break;
+                frag = FragmentLop.newIntance();
+                break;
             case 1:
                 frag = FragmentTKB.newIntance();
                 break;
@@ -41,9 +41,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         String title = null;
         switch (position) {
             case 0:
-                return  "Danh sach lop";
+                return "Danh sách lớp";
             case 1:
-                return  "Thoi khoa bieu";
+                return "Thời khóa biểu";
         }
         return title;
     }

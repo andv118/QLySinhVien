@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_SV_DanhSachDiem"
+        android:icon="@drawable/ic_search_white_48dp"
+        android:title="Dach sách điểm SV"/>
+
+    <item android:id="@+id/menu_SV_XepLoai"
+        android:icon="@drawable/ic_search_white_48dp"
+        android:title="Xếp loại SV"/>
+
+</menu>

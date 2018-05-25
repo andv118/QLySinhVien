@@ -23,16 +23,14 @@ public class ThemLopHocActivity extends AppCompatActivity {
         // anh xa
         initView();
         // set click button
-        setClickButton();
-
+        setClickView();
     }
 
-    private void setClickButton() {
+    private void setClickView() {
         // thời gian
         btnThoiGian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DialogThoiGian dialogThoiGian = new DialogThoiGian(ThemLopHocActivity.this);
                 dialogThoiGian.setDialog(edtThoiGian, edtThu);
             }
@@ -61,6 +59,7 @@ public class ThemLopHocActivity extends AppCompatActivity {
                 } else {
                     DatabaseManager databaseManager = new DatabaseManager(ThemLopHocActivity.this);
                     databaseManager.raedJSON_INSERT(edtTenLopHoc, edtThoiGian, edtThu, edtPhongHoc);
+                    finish();
                 }
             }
         });

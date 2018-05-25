@@ -24,7 +24,11 @@
         <activity android:name=".Sinh_Vien.activity.DanhSachSinhVien" />
         <activity android:name=".Sinh_Vien.activity.ThemSinhVienActivity" />
         <activity android:name=".Sinh_Vien.activity.SuaSinhVienActivity" />
-        <activity android:name=".Sinh_Vien.activity.ThemSV2Activity"></activity>
+        <activity android:name=".Sinh_Vien.activity.ThemSV2Activity" />
+        <activity android:name=".Diem_So.activity.ThemDiemSoActivity" />
+        <activity android:name=".Diem_So.activity.XemDiemSoActivity" />
+        <activity android:name=".Diem_So.activity.XepLoaiSVActivity" />
+        <activity android:name=".Sinh_Vien.activity.DiemDanhActivity"></activity>
     </application>
 
 </manifest>
